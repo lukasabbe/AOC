@@ -4,7 +4,7 @@ from util import readData
 def mulCalc(input):
     inputs = []
     i = 0
-
+    correctChars =[",","(",")"]
     doNext = True
 
     while(True):
@@ -15,11 +15,11 @@ def mulCalc(input):
         elif(input[i:i+7] == "don't()"):
             doNext = False
 
-        if(input[i] == "m" and input[i+1] == "u" and input[i+2] == "l" and input[i+3] == "("):
+        if(input[i:i+4] == "mul("):
             start = i + 3
             end = 0
             for j in range(i+3,len(input)):
-                if(input[j] != ")" and input[j] != "(" and input[j] != "," and not input[j].isnumeric()):
+                if(input[j] not in correctChars and not input[j].isnumeric()):
                     end = -1
                     break
                 if(input[j] == ")"):
