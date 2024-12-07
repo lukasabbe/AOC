@@ -2,14 +2,14 @@ from util import readData, readTestData
 
 def getAllResults(nums:list):
     if(len(nums) == 1):
-        return [int(nums[0])]
+        return set([int(nums[0])])
     num = nums.pop()
     results = getAllResults(nums)
-    result = [int(num) * result for result in results]
-    result2 = [int(num) + result for result in results]
-    result3 = [int(str(result)+num) for result in results]
-    result.extend(result2)
-    result.extend(result3)
+    result = set([int(num) * result for result in results])
+    result2 = set([int(num) + result for result in results])
+    result3 = set([int(str(result)+num) for result in results])
+    result.update(result2)
+    result.update(result3)
     return result
 
 def calcOperators(data):
