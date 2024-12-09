@@ -66,5 +66,5 @@ def placeAntiNodes(sky):
     print(total)
 
 if(__name__ == "__main__"):
-    sky = readTestData()
+    sky = readData()
     placeAntiNodes(sky)
