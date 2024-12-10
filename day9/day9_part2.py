@@ -47,8 +47,9 @@ def compressNumData(numData:list):
 
     while(biggestChunk > 0):
         (indexStart, indexStop) = findBiggestChunk(numData, str(biggestChunk))
-        if(findDotAreaAtLeftOf(numData,indexStart,indexStop - indexStart) != None):
-            (dotStartIndex, dotEndIndex) = findDotAreaAtLeftOf(numData,indexStart,indexStop - indexStart)
+        dotData = findDotAreaAtLeftOf(numData,indexStart,indexStop - indexStart)
+        if(dotData != None):
+            (dotStartIndex, dotEndIndex) = dotData
             while(indexStart != indexStop +1 and dotStartIndex != dotEndIndex+1):
                 numData = swapNumData(numData, indexStart, dotStartIndex)
                 indexStart += 1
