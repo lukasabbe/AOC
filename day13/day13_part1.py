@@ -2,24 +2,6 @@ from util import readTestData
 from functools import cache
 from sympy import symbols, Eq, solve, Integer
 
-@cache
-def findPriceSum(x, xInc, x2, x2Inc, sum):
-    if(x > sum):
-        return None
-    elif(x2 > sum):
-        return None
-    elif x == sum:
-        return [0,0]
-    elif x2 == sum:
-        return [0,0]
-    
-    total = findPriceSum(x + xInc, xInc, x2 + x2Inc, x2Inc, sum)
-    if(total != None):
-        return total[0] + 1, total[1]
-    total2 = findPriceSum(x + x2Inc, xInc, x2 + xInc, x2Inc, sum)
-    if(total2 != None):
-        return total2[0], total2[1] + 1
-    return None
 
 def calc(xInc,xInc2,yInc,yInc2,sum,sum2):
     x,y = symbols('x y')
