@@ -25,10 +25,6 @@ def renderToImage(points, filename):
     draw = ImageDraw.Draw(img)
     for (x, y), _ in points:
         draw.point((x, y), fill='black')
-    
-    for (x, y), _ in points:
-        if img.getpixel((x, y)) == (0, 0, 0):
-            ImageDraw.floodfill(img, (x, y), (0, 0, 0))
 
     img.save(filename)
 

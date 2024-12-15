@@ -16,7 +16,7 @@ def calcRules(nums):
 
 if(__name__ == "__main__"):
     current = "8069 87014 98 809367 525 0 9494914 5"
-    for i in range(75):
+    for i in range(25):
         print("on iteration: ", i)
         current = calcRules(current)
         os.system("cls")
