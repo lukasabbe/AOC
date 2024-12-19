@@ -60,9 +60,6 @@ def move(house, instruction,x ,y, char = "@"):
     return house, (x,y)
 
 
-
-
-
 if(__name__ == "__main__"):
     house, instructions = readDataPart2()
     y,x = findRobot(house)
