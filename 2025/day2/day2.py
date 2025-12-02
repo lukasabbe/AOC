@@ -6,26 +6,26 @@ def part1(id: str):
     return True
 
 def part2(id: str):
-    for check in range(1, len(id) // 2 + 1):
-        pattern = id[0:check]
+    for pattern_length in range(1, len(id) // 2 + 1):
+        pattern = id[0:pattern_length]
         valid = False
-        for i in range(check, len(id), check):
-            if id[i : i + check] != pattern:
+        for i in range(pattern_length, len(id), pattern_length):
+            if id[i : i + pattern_length] != pattern:
                 valid = True
                 break
         if not valid:
             return False
     return True
 
-def checkValid(func):
-    ids = open("day2/input.txt").read().split(",")
+def checkValid(isValidScript):
+    intervals = open("day2/input.txt").read().split(",")
     total = 0
-    for id in ids:
-        numOne = int(id.split("-")[0].strip())
-        numTwo = int(id.split("-")[1].strip())
-        for i in range(numOne, numTwo + 1):
+    for interval in intervals:
+        startId = int(interval.split("-")[0].strip())
+        endId = int(interval.split("-")[1].strip())
+        for i in range(startId, endId + 1):
             iStr = str(i)
-            if not func(iStr):
+            if not isValidScript(iStr):
                 total += int(iStr)
     print(total)
 
