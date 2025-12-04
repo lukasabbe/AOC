@@ -27,7 +27,6 @@ def find_biggest(line, target_len=12):
             stack.append(line[i])
     return ''.join(stack[:target_len])
 
-
 if __name__ == "__main__":
     part1()
     part2()
