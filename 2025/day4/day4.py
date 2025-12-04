@@ -1,3 +1,5 @@
+import threading
+from time import time
 def part1(data: list[list[str]]):
     total = 0
     for y in range(len(data)):
@@ -8,12 +10,12 @@ def part1(data: list[list[str]]):
             for d in dir:
                 dx, dy = d
                 nx, ny = x + dx, y + dy
-                if 0 <= nx < len(data[y]) and 0 <= ny < len(data):
-                    if data[ny][nx] == "@":
-                        amount += 1
+                if 0 <= nx < len(data[y]) and 0 <= ny < len(data) and data[ny][nx] == "@":
+                    amount += 1
             if amount < 4:
                 total += 1
     print(total)
+
 
 def part2(data: list[list[str]]):
     total = 0
@@ -27,9 +29,8 @@ def part2(data: list[list[str]]):
                 for d in dir:
                     dx, dy = d
                     nx, ny = x + dx, y + dy
-                    if 0 <= nx < len(data[y]) and 0 <= ny < len(data):
-                        if data[ny][nx] == "@":
-                            amount += 1
+                    if 0 <= nx < len(data[y]) and 0 <= ny < len(data) and data[ny][nx] == "@":
+                        amount += 1
                 if amount < 4:
                     data[y][x] = "."
                     temp += 1
@@ -40,5 +41,11 @@ def part2(data: list[list[str]]):
 
 if __name__ == "__main__":
     map = [[x for x in y] for y in open("day4/input.txt").read().splitlines()]
-    part1(map)
-    part2(map)
+    start = time()
+    t1 = threading.Thread(target=part1, args=(map,))
+    t2 = threading.Thread(target=part2, args=(map,))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+    print(f"Took {time() - start} seconds")
