@@ -1,5 +1,6 @@
 if __name__ == "__main__":
     lines_part2 = [line[::-1] for line in open("day6/input.txt").read().splitlines()]
+    print(lines_part2)
     opperations = lines_part2.pop().split()
     part2_total = 0
     opperationCount = 0
