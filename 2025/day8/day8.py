@@ -22,8 +22,6 @@ class Circuit:
     
 
 if __name__ == "__main__":
-
-
     lines = [list(map(int, line.split(","))) for line in open("day8/input.txt").readlines()]
     coordinates = [Coordinate(x, y, z) for x, y, z in lines]
 
