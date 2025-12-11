@@ -1,28 +1,27 @@
-def find_paths(devices: dict[str, list[str]], start: str, end: str, must_pass: list[str] | None = None) -> int:
-    if must_pass is None: must_pass = set()
-    else: must_pass = set(must_pass)
+import functools
 
+def find_paths(devices: dict[str, list[str]], start: str, end: str, must_pass: list[str] | None = None) -> int:
     visited: set[str] = set()
 
-    def dfs(current: str, remaining: set[str]) -> int:
-        if current == end and not remaining:
+    @functools.cache
+    def dfs(current: str, has_first: bool, has_second: bool) -> int:
+        if current == end and has_first and has_second:
             return 1
 
         visited.add(current)
-
-        new_remaining = remaining - {current}
 
         count = 0
 
         for neighbor in devices.get(current, []):
             if neighbor not in visited:
-                count += dfs(neighbor, new_remaining)
+                count += dfs(neighbor, has_first or neighbor == must_pass[0], has_second or neighbor == must_pass[1])
 
         visited.remove(current) # backtrack
         return count
 
-
-    return dfs(start, must_pass) 
+    if not must_pass:
+        return dfs(start, True, True)
+    return dfs(start, False, False) 
     
 
 if __name__ == "__main__":
